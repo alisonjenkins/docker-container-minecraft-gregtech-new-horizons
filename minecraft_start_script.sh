@@ -17,7 +17,7 @@ cd /srv/minecraft || exit 1
 source .env
 
 # shellcheck disable=2086
-java $JAVA_ARGS -jar forge-*.jar nogui &
+java $JAVA_ARGS @java9args.txt -jar lwjgl3ify-forgePatches.jar nogui &
 
 echo "$!" >/tmp/minecraft.pid
 
