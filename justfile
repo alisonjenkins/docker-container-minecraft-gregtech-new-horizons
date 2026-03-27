@@ -5,7 +5,10 @@ build tag:
     set -euo pipefail
     podman build --platform linux/amd64 --tag {{ecr}}:{{tag}}-amd64 .
     podman build --platform linux/arm64 --tag {{ecr}}:{{tag}}-arm64 .
+    echo "creating manifest"
+    podman manifest rm {{ecr}}:{{tag}} 2>/dev/null || podman rmi {{ecr}}:{{tag}} 2>/dev/null || true
     podman manifest create {{ecr}}:{{tag}} {{ecr}}:{{tag}}-amd64 {{ecr}}:{{tag}}-arm64
+    echo "pushing"
     podman manifest push {{ecr}}:{{tag}} docker://{{ecr}}:{{tag}}
 
 login:
