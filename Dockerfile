@@ -19,7 +19,6 @@ RUN curl -L "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${P
     rm /tmp/server.zip && \
     yum remove -y unzip
 RUN chmod +x /srv/minecraft/*.sh
-ADD .env /srv/minecraft/.env
 ADD minecraft_start_script.sh /usr/bin/minecraft_start_script
 RUN chmod +x /usr/bin/minecraft_start_script
 COPY --from=rconc-builder /rconc_${TARGETARCH} /usr/bin/rconc
